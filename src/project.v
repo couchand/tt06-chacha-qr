@@ -130,7 +130,7 @@ module tt_um_couchand_chacha_qr (
           end
         end
       end else begin
-        if qr_en begin
+        if (qr_en) begin
           a <= apb_plus_br12;
           b <= bxc_rotl_7;
           c <= cpd_plus_dr8;
