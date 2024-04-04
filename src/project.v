@@ -104,7 +104,7 @@ module tt_um_couchand_chacha_qr (
       end
       uo_out <= addr[1]
         ? (addr[0] ? reg_out[31:24] : reg_out[23:16])
-        : (addr[0] ? reg_out[15:8] : reg_out[7:0);
+        : (addr[0] ? reg_out[15:8] : reg_out[7:0]);
     end
   end
 
