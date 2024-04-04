@@ -45,7 +45,7 @@ pinout:
   uio[2]: "Addr 2"
   uio[3]: "Addr 3"
   uio[4]: "Write Enable"
-  uio[5]: "Execute Enable"
+  uio[5]: "Quarter Round Enable"
   uio[6]: ""
   uio[7]: ""
 

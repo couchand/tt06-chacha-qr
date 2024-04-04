@@ -25,8 +25,8 @@ module tt_um_couchand_chacha_qr (
   reg [31:0] d;
 
   wire [3:0] addr = uio_in[3:0];
-  wire wr_en = uio_in[7];
-  wire qr_en = uio_in[6];
+  wire wr_en = uio_in[4];
+  wire qr_en = uio_in[5];
 
   wire [31:0] reg_out = addr[3]
     ? (addr[2] ? d : c)
