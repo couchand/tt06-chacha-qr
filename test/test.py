@@ -114,25 +114,25 @@ async def test_qr(dut):
 
   dut._log.info("Run quarter round")
   dut.uio_in.value = 0x20
-  await ClockCycles(dut.clk, 2)
-  dut.uio_in.value = 0x00
   await ClockCycles(dut.clk, 1)
+  dut.uio_in.value = 0x00
+  await ClockCycles(dut.clk, 10)
 
   dut._log.info("Check that a is 0xB7877FEB")
   dut.uio_in.value = 0x00
   await ClockCycles(dut.clk, 1)
-  assert dut.uo_out.value == 0xB7
+  assert dut.uo_out.value == 0xEB
 
   dut.uio_in.value = 0x01
   await ClockCycles(dut.clk, 1)
-  assert dut.uo_out.value == 0x87
+  assert dut.uo_out.value == 0x7F
 
   dut.uio_in.value = 0x02
   await ClockCycles(dut.clk, 1)
-  assert dut.uo_out.value == 0x7F
+  assert dut.uo_out.value == 0x87
 
   dut.uio_in.value = 0x03
   await ClockCycles(dut.clk, 1)
-  assert dut.uo_out.value == 0xEB
+  assert dut.uo_out.value == 0xB7
 
   dut._log.info("End")
