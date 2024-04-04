@@ -62,10 +62,10 @@ module tt_um_couchand_chacha_qr (
 
   always @(posedge clk) begin
     if (!rst_n) begin
-      a <= 31'b0;
-      b <= 31'b0;
-      c <= 31'b0;
-      d <= 31'b0;
+      a <= 32'b0;
+      b <= 32'b0;
+      c <= 32'b0;
+      d <= 32'b0;
     end else begin
       if (wr_en) begin
         if (addr[3]) begin
