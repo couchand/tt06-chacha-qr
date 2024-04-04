@@ -36,29 +36,21 @@ module tt_um_couchand_chacha_qr (
     ? (addr[0] ? reg_out[31:24] : reg_out[23:16])
     : (addr[0] ? reg_out[15:8] : reg_out[7:0]);
 
-  wire [31:0] a_plus_b = a + b;
-  wire [31:0] d_xor_apb = d ^ a_plus_b;
-  wire [31:0] dxa_rotl_16;
-  assign dxa_rotl_16[15:0] = d_xor_apb[31:16];
-  assign dxa_rotl_16[31:16] = d_xor_apb[15:0];
+  wire [31:0] next_a;
+  wire [31:0] next_b;
+  wire [31:0] next_c;
+  wire [31:0] next_d;
 
-  wire [31:0] c_plus_d = c + dxa_rotl_16;
-  wire [31:0] b_xor_cpd = b ^ c_plus_d;
-  wire [31:0] bxc_rotl_12;
-  assign bxc_rotl_12[11:0] = b_xor_cpd[31:20];
-  assign bxc_rotl_12[31:12] = b_xor_cpd[19:0];
-
-  wire [31:0] apb_plus_br12 = a_plus_b + bxc_rotl_12;
-  wire [31:0] dr16_xor_apb = dxa_rotl_16 ^ apb_plus_br12;
-  wire [31:0] dxa_rotl_8;
-  assign dxa_rotl_8[7:0] = dr16_xor_apb[31:24];
-  assign dxa_rotl_8[31:8] = dr16_xor_apb[23:0];
-
-  wire [31:0] cpd_plus_dr8 = c_plus_d + dxa_rotl_8;
-  wire [31:0] br12_xor_cpd = bxc_rotl_12 ^ cpd_plus_dr8;
-  wire [31:0] bxc_rotl_7;
-  assign bxc_rotl_7[6:0] = br12_xor_cpd[31:25];
-  assign bxc_rotl_7[31:7] = br12_xor_cpd[24:0];
+  qr qr_instance(
+    .a_in(a),
+    .b_in(b),
+    .c_in(c),
+    .d_in(d),
+    .a_out(next_a),
+    .b_out(next_b),
+    .c_out(next_c),
+    .d_out(next_d),
+  );
 
   always @(posedge clk) begin
     if (!rst_n) begin
@@ -131,10 +123,10 @@ module tt_um_couchand_chacha_qr (
         end
       end else begin
         if (qr_en) begin
-          a <= apb_plus_br12;
-          b <= bxc_rotl_7;
-          c <= cpd_plus_dr8;
-          d <= dxa_rotl_8;
+          a <= next_a;
+          b <= next_b;
+          c <= next_c;
+          d <= next_d;
         end
       end
     end
