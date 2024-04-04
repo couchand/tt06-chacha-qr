@@ -35,9 +35,9 @@ module qr (
   assign bxc_rotl_7[6:0] = br12_xor_cpd[31:25];
   assign bxc_rotl_7[31:7] = br12_xor_cpd[24:0];
 
-  assign a = apb_plus_br12;
-  assign b = bxc_rotl_7;
-  assign c = cpd_plus_dr8;
-  assign d = dxa_rotl_8;
+  assign a_out = apb_plus_br12;
+  assign b_out = bxc_rotl_7;
+  assign c_out = cpd_plus_dr8;
+  assign d_out = dxa_rotl_8;
 
 endmodule
