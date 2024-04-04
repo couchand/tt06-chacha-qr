@@ -8,7 +8,7 @@ module qr (
     output wire [31:0] a_out,
     output wire [31:0] b_out,
     output wire [31:0] c_out,
-    output wire [31:0] d_out,
+    output wire [31:0] d_out
 );
 
   wire [31:0] a_plus_b = a_in + b_in;
