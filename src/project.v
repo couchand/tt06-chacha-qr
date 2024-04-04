@@ -49,7 +49,7 @@ module tt_um_couchand_chacha_qr (
     .a_out(next_a),
     .b_out(next_b),
     .c_out(next_c),
-    .d_out(next_d),
+    .d_out(next_d)
   );
 
   always @(posedge clk) begin
