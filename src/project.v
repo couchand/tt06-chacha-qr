@@ -32,6 +32,10 @@ module tt_um_couchand_chacha_qr (
     ? (addr[2] ? d : c)
     : (addr[2] ? b : a);
 
+  assign uo_out = addr[1]
+        ? (addr[0] ? reg_out[31:24] : reg_out[23:16])
+        : (addr[0] ? reg_out[15:8] : reg_out[7:0]);
+
   always @(posedge clk) begin
     if (!rst_n) begin
       a <= 31'b0;
@@ -102,9 +106,6 @@ module tt_um_couchand_chacha_qr (
           end
         end
       end
-      uo_out <= addr[1]
-        ? (addr[0] ? reg_out[31:24] : reg_out[23:16])
-        : (addr[0] ? reg_out[15:8] : reg_out[7:0]);
     end
   end
 
