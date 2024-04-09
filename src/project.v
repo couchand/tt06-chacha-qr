@@ -27,6 +27,7 @@ module tt_um_couchand_chacha_qr (
   wire [3:0] addr = uio_in[3:0];
   wire wr_en = uio_in[4];
   wire qr_en = uio_in[5];
+  wire er_sel = uio_in[6];
 
   wire [31:0] reg_out = addr[3]
     ? (addr[2] ? d : c)
@@ -42,6 +43,7 @@ module tt_um_couchand_chacha_qr (
   wire [31:0] next_d;
 
   qr qr_instance(
+    .sel(er_sel),
     .a_in(a),
     .b_in(b),
     .c_in(c),

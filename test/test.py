@@ -115,6 +115,8 @@ async def test_qr(dut):
   dut._log.info("Run quarter round")
   dut.uio_in.value = 0x20
   await ClockCycles(dut.clk, 1)
+  dut.uio_in.value = 0x60
+  await ClockCycles(dut.clk, 1)
   dut.uio_in.value = 0x00
   await ClockCycles(dut.clk, 10)
 
